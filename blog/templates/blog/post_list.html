@@ -1,0 +1,26 @@
+<!--
+ * @Author: duck 762202223@qq.com
+ * @Date: 2025-09-02 18:40:05
+ * @LastEditors: duck 762202223@qq.com
+ * @LastEditTime: 2025-09-02 18:40:16
+ * @FilePath: /new_django/blog/templates/blog/post_list.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                <div class="text-muted">
+                    Published: {{ post.published_date }} | 
+                    Author: {{ post.author }} | 
+                    Views: {{ post.views }} | 
+                    Category: {{ post.category.name }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
